@@ -3,5 +3,5 @@ describe('template spec', () => {
     cy.visit('http://localhost:5173/');
 
     cy.get('h1').should('contain', 'Charity Management');
-  })
-})
+  });
+});
