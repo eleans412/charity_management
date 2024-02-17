@@ -1,21 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 
-const Charities = () => {
+function Charities() {
   // basic use of react-query
   const {
     error,
     isLoading,
     data: charities,
   } = useQuery({
-    queryKey: ["repoData"],
-    queryFn: () =>
-      fetch("http://localhost:3000/charities").then((res) => res.json()),
+    queryKey: ['repoData'],
+    queryFn: () => fetch('http://localhost:3000/charities').then((res) => res.json()),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return 'Loading...';
 
-  if (error) return "An error has occurred: " + error.message;
+  if (error) return `An error has occurred: ${error.message}`;
 
   return (
     <div>
@@ -25,6 +24,6 @@ const Charities = () => {
       ))}
     </div>
   );
-};
+}
 
 export default Charities;

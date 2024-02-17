@@ -1,10 +1,12 @@
 CREATE TYPE connection_initiator AS ENUM ('charity', 'sponsor');
 CREATE TYPE connection_status AS ENUM ('Requested', 'Accepted', 'Declined', 'Pending Review');
+CREATE TYPE view_type AS ENUM ('default', 'no_connections', 'existing_connections'); 
 
 -- Charities Table
 CREATE TABLE charities (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    custom_view view_type NOT NULL
     description TEXT, -- should this be required (maybe role of product owner to discern?)
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
