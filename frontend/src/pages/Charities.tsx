@@ -18,7 +18,7 @@ function Charities() {
   });
 
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <h2>Charities</h2>
       {isLoading && <p>Loading...</p>}
       {error && (
