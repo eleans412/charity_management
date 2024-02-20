@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -37,32 +39,38 @@ function Login() {
   };
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Email/Username "
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <TextField
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <Button variant="contained" color="success" type="submit">
-          Login
-        </Button>
-      </form>
+      <Box display="flex" justifyContent="center">
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Typography variant="h3" gutterBottom>
+              Login
+            </Typography>
+          </div>
+          <div>
+            <TextField
+              required
+              id="outlined-required"
+              label="Email/Username "
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <TextField
+              id="outlined-password-input"
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button variant="contained" color="success" type="submit">
+            Login
+          </Button>
+        </form>
+      </Box>
     </div>
   );
 }

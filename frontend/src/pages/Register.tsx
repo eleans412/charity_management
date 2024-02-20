@@ -59,7 +59,7 @@ function Register() {
     }
   };
 
-  const handleNeedChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNeedChange = (name: string) => (event: ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
     setNeeds((prevNeeds) => {
       if (isChecked) {

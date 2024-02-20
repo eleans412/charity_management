@@ -20,6 +20,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -73,11 +74,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
-const settings = ['Profile', 'Account', 'Logout'];
+const settings = ['Account', 'Logout'];
 
 export default function DrawerAppBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -91,23 +93,31 @@ export default function DrawerAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleSettingClick = (setting: string) => {
+    navigate(`/${setting.toLowerCase()}`);
+  };
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Charity Management Co.</Link>
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={
+                <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>{item}</Link>
+              }
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
     </Box>
   );
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -124,7 +134,7 @@ export default function DrawerAppBar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
-              MUI
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Charity Management Co.</Link>
             </Typography>
             <Search>
               <SearchIconWrapper>
@@ -136,7 +146,7 @@ export default function DrawerAppBar() {
           <Box sx={{ display: 'flex', gap: '10px' }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+                <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>{item}</Link>
               </Button>
             ))}
           </Box>
@@ -163,7 +173,8 @@ export default function DrawerAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handleSettingClick(setting)}>
+                  <Link to={`/${setting.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }} />
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -190,9 +201,6 @@ export default function DrawerAppBar() {
       </nav>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        {/* <Typography>
-          We would insert the dashboard content here?
-        </Typography> */}
       </Box>
     </Box>
   );
